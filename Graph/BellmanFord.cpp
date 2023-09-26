@@ -1,49 +1,47 @@
+typedef struct{
+    int from; int to;
+    ll weight;
+} edge;
+const ll inf = 1LL << 62;
+// NegCyc_Finding_Road
+vector<edge> graph;
 int main(){
-    ll n = nxt();
-    ll m = nxt();
-    vector<tuple<ll,ll,ll> > edges;
-    for(int i = 0;i < m;i++){
-        ll a = nxt();
-        ll b = nxt();
-        ll w = nxt();
-        edges.push_back({a,b,w});
-        }
-    vi dis(n+1);
-    for(int i = 1;i <= n;i++){
-        dis[i] = 1e10;
+    int src = 0;
+    int n, m;    cin >> n >> m;
+    vector<int> par(n+1), dis(n+1);
+    rep(i, 0, m){
+        int a, b, w; cin >> a >> b >> w;
+        graph.push_back({a, b, w});
+    }
+    rep(i, 0, n+1) {
+        dis[i] = 1e9 + 5;
     }
     dis[1] = 0;
-    vi par(n+1);
-    ll f;//log(nm);
-    for(int i = 0;i <= n;i++){ // n-1
-        f = -1;
-        for(auto e:edges){
-            ll a, b, w;
-            tie(a,b,w) = e;
-            if(dis[b] > dis[a]+w){
-                dis[b] = dis[a]+w;
+    rep(i, 0, n + 1){
+        src = 0;
+        for(auto [a, b, w] : graph){
+            if(dis[b] > dis[a] + w){
+                dis[b] = dis[a] + w;
                 par[b] = a;
-                f = b;
+                src = b;
             }
         }
     }
-    if(f != -1){
-        queue<ll> q;
-        cout << "YES\n";
-        for(int i = 0 ;i < n+1;i++)  f = par[f];
-        vi cycle;
-        for(ll v = f;;v = par[v]){
-            cycle.push_back(v);
-            if(v == f && cycle.size()>1){
-                break;
-            }
+    if(src){
+        vector<int> ans;
+        cout << "YES" << endl;
+        rep(i, 0, n + 1) src = par[src];
+        ans.push_back(src);
+        for(int i = par[src]; i != src; i = par[i]){
+            ans.push_back(i);
         }
-        reverse(all(cycle));
-        for(auto x:cycle){
-            cout << x << ' ';
+        ans.push_back(src);
+        reverse(all(ans));
+        for (auto i : ans){
+            cout << i << " ";
         }
     }
-    else cout << "NO\n";
-
-    return 0;
+    else {
+        cout << "NO" << endl;
+    }
 }
