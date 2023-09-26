@@ -108,10 +108,3 @@ void solve(){
         }
     }
 }
-int main(){
-    IO;
-    int t = 1;
-    while(t--){
-        solve();
-    }
-}

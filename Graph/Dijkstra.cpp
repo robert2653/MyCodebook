@@ -33,7 +33,3 @@ void solve(){
     if(dis[n] == inf) cout << -1 << endl;
     else cout << dis[n] << endl;
 }
-int main(){
-    IO;
-    solve();
-}
