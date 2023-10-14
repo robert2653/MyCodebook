@@ -1,5 +1,6 @@
 // 最大距離，使用拓樸，確保不會再被走過，要用queue
 // 如果1走不到n，可能會被鬆弛，要dis[n] < 0
+// 只是用單向圖
 void print_ans(int n, vector<int> &par){
     deque<int> ans;
     int now = n;

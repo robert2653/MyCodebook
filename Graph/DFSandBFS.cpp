@@ -2,7 +2,7 @@ ll N = 1e6;
 vi adj[N];
 bool vis[N];
 void DFS(ll s){
-    if(vis[s])return;
+    if(vis[s]) return;
     vis[s] = true;
     for(auto u: adj[s]){
         DFS(u);

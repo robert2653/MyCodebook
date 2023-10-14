@@ -1,4 +1,5 @@
-//  雙向圖檢查adj[i].sz == odd => IMPOSSIBLE，road.sz != m+1 => IMPOSSIBLE
+// Undirected : check adj[i].sz == odd => IMPOSSIBLE，road.sz != m+1 => IMPOSSIBLE
+// Directed : minimize to 1 -> 2，so check in_degree == out_degree
 int n, m;
 set<int> adj[maxn];// rev_adj[maxn];
 int in[maxn];
