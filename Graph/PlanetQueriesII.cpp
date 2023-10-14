@@ -1,7 +1,7 @@
 int n, q;
 int dp[30][maxn];
 vector<vector<int>> cycles;
-int no[maxn];   // 編號、可以是cycle內的順序，或是cycle外的順序
+int no[maxn];   // Order、Can be in cycle，or out
 int cycle_idx[maxn];
 bool vis[maxn];
 void set_out_of_cycle_no(int now, unordered_set<int> &done){
@@ -11,7 +11,7 @@ void set_out_of_cycle_no(int now, unordered_set<int> &done){
     done.insert(now);
     no[now] = no[dp[0][now]] - 1;
 }
-int will_go_to(int u, int k){     // 回傳走k步會到的節點
+int will_go_to(int u, int k){     // return the node when walk k
     rep(i, 0, 18){
         if (k & (1 << i)){
             u = dp[i][u];
@@ -26,7 +26,7 @@ void find_cycle(int now){
     while (appear.find(now) == appear.end()){
         appear.insert(now);
         vec.push_back(now);
-        if (vis[now]){  // 沒找到環
+        if (vis[now]){  // Didn't Find Cycle
             flag = false;
             break;
         }
@@ -34,7 +34,7 @@ void find_cycle(int now){
     }
     for (auto i : vec) vis[i] = true;
     if (!flag)  return;
-    int z = find(vec.begin(), vec.end(), now) - vec.begin();     // 從上個now開始推
+    int z = find(vec.begin(), vec.end(), now) - vec.begin();     // start pushing from last now
     int m = vec.size();
     vector<int> cycle;
     for (int i = z; i < m; i++){
@@ -47,7 +47,7 @@ void solve(){
     rep(u, 1, n){
         cin >> dp[0][u];
     }
-    rep(i, 1, 18){  // 建表
+    rep(i, 1, 18){  // Make Chart
         rep(u, 1, n){
             dp[i][u] = dp[i - 1][dp[i - 1][u]];
         }
@@ -71,12 +71,12 @@ void solve(){
     rep(i, 1, n) set_out_of_cycle_no(i, done);
     rep(i, 1, q){
         int u, v; cin >> u >> v;
-        // 同個環內
+        // Same Cycle
         if(cycle_idx[u] == cycle_idx[v] && cycle_idx[u] != -1 && cycle_idx[v] != -1){
             int cyc_size = cycles[cycle_idx[u]].size();
             cout << (no[v] - no[u] + cyc_size) % cyc_size << endl;
         }
-        else if (cycle_idx[u] == -1 && cycle_idx[v] == -1){  // 都不在環內
+        else if (cycle_idx[u] == -1 && cycle_idx[v] == -1){  // Both are not in a Cycle
             if(no[u] > no[v]){
                 cout << -1 << endl;
                 continue;
@@ -87,7 +87,7 @@ void solve(){
             }
             else cout << -1 << endl;
         }
-        else if (cycle_idx[u] == -1 && cycle_idx[v] != -1){    // v 在環內，二分搜取小
+        else if (cycle_idx[u] == -1 && cycle_idx[v] != -1){    // v is in cycle，Smaller Binary Search
             int l = -1, r = n;
             while(l <= r){
                 int m = (l + r) / 2;
@@ -103,7 +103,7 @@ void solve(){
             }
             else cout << -1 << endl;
         }
-        else {  // u 死循環，走不到
+        else {  // u is death in the cycle，can't reach
             cout << -1 << endl;
         }
     }
