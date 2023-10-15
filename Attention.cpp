@@ -18,7 +18,7 @@ using namespace std;
 #define sz size()
 #define pb(x) push_back(x)
 #define ppb pop_back()
-#define IO ios_base::sync_with_stdio(0); cin.tie(0);
+#define IO ios_base::sync_with_stdio(0); cin.tie(nullptr);
 #define init(x, k) memset(x, k, sizeof(x));
 #define vec_init(x, k) x.assign(x.size(), k);
 #define lc 2*now
