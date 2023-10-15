@@ -5,6 +5,9 @@
 // 4. (re)open vscode, install C/C++, run, choose g++
 // 5. open settings -> compiler -> add compilerPath "C:\\msys64\\mingw64\\bin\\g++.exe"
 
+// Make Codebook
+// ./ --author "Salmon" --initials Salmon --columns 3 --output "CodeBook.pdf" --size 8
+
 // Init
 #include <bits/stdc++.h>
 using namespace std;
