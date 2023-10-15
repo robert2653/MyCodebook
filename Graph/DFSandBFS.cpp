@@ -8,17 +8,6 @@ void DFS(ll s){
         DFS(u);
     }
 }
-ll timer;
-void dfs(ll now, ll pa) {
-    pos[now] = ++timer;
-    add(timer, v[now]);
-    sz[now] = 1;
-    for (ll v : g[now]) {
-        if (v == pa) continue;
-        dfs(v, now);
-        sz[now] += sz[v];
-    }
-}
 queue<ll> q;
 ll dis[N];
 void BFS(ll x){
@@ -26,12 +15,12 @@ void BFS(ll x){
     dis[x] = 0;
     q.push(x);
     while(!q.empty()){
-        ll s = q.front();q.pop();
-        for(auto u: adj[s]){
-            if(vis[u]) continue;
-            vis[u] = true;
-            dis[u] = dis[s] + 1;
-            q.push(u);
+        ll now = q.front();q.pop();
+        for(auto nxt : adj[now]){
+            if(vis[nxt]) continue;
+            vis[nxt] = true;
+            dis[nxt] = dis[now] + 1;
+            q.push(nxt);
         }
     }
 }

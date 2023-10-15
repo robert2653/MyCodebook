@@ -20,10 +20,10 @@ int main(){
             dis[i][j] = graph[i][j];
         }   
     }
-    for(int i = 0; i <= n; i++) //自己到自己是0
+    for(int i = 0; i <= n; i++) // self to self is 0
         dis[i][i] = 0;
 
-    for(int k = 1; k <= n; k++){    //
+    for(int k = 1; k <= n; k++){
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= n; j++){
                 dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]);

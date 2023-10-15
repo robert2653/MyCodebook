@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-// Ceiled MCMF，if not use return to determine
+// Ceiled MinCostMaxFlow，if not, use dinic
 typedef struct {
     int from, to, w, cost;
 } edge;

@@ -17,20 +17,17 @@ void print_ans(int n, vector<int> &par){
 void solve(){
     int n, m;
     cin >> n >> m;
-    // int dis[maxn];
     vector<int> dis(n+1, -inf); dis[1] = 0;
     vi graph[n+1];
     vector<bool> vis(n+1, 0);
     vector<int> par(n+1);
     vector<int> in(n+1, 0);
-    // priority_queue<pii, vii, greater<pii>> pq;
     queue<int> q;
     rep(i, 1, m){
         int u, v; cin >> u >> v;
         graph[u].push_back(v);
         in[v]++;
     }
-    // q.push({0, 1});
     rep(i, 1, n){
         if(in[i] == 0) q.push(i);
     }

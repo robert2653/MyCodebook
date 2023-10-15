@@ -1,16 +1,16 @@
 void solve(){
     int n, m, noon, night;
     cin >> n >> m >> noon >> night;
-    ll dis[n+1];    // 前k小，要用pq存，大的放top
-    vll graph[n+1];
-    bool vis[n+1]; // 如果要前k小，要用pq.top().first跟dis[pq.top().second]比，不用vis
+    ll dis[n + 1];
+    vll graph[n + 1];
+    bool vis[n + 1];
     rep(i, 1, m){
         int u, v, w; cin >> u >> v >> w;
         graph[u].push_back({v, w});
         graph[v].push_back({u, w});
     }
     priority_queue<vector<ll>, vector<vector<ll>>, greater<vector<ll>>> pq;
-    // noon 存-的
+    // noon is -
     rep(i, 1, n){
         dis[i] = inf;   vis[i] = 0;
     }
@@ -21,7 +21,7 @@ void solve(){
         ll now_noon = -now[1], u = now[2];
         if(vis[u]) continue;
         for(auto [nxt, w] : graph[u]){
-            if(noon < w) continue;  // 休息一天都走不到
+            if(noon < w) continue;  // never pass
             ll tmp = dis[u] + (now_noon >= w ? w : now_noon + night + w);
             if(tmp < dis[nxt]){
                 dis[nxt] = tmp;
@@ -32,4 +32,19 @@ void solve(){
     }
     if(dis[n] == inf) cout << -1 << endl;
     else cout << dis[n] << endl;
+}
+// Investigation
+for(auto [v, w] : graph[u]){
+    if(dis[u] + w < dis[v]){
+        dis[v] = dis[u] + w;
+        pq.push({dis[v], v});
+        min_price_nums[v] = min_price_nums[u];
+        max_dis_min_price[v] = max_dis_min_price[u] + 1;
+        min_dis_min_price[v] = min_dis_min_price[u] + 1;
+    }
+    else if(dis[u] + w == dis[v]){
+        min_price_nums[v] = (min_price_nums[u] + min_price_nums[v]) % mod;
+        max_dis_min_price[v] = max(max_dis_min_price[u] + 1, max_dis_min_price[v]);
+        min_dis_min_price[v] = min(min_dis_min_price[u] + 1, min_dis_min_price[v]);
+    }
 }
