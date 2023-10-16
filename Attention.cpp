@@ -6,7 +6,7 @@
 // 5. open settings -> compiler -> add compilerPath "C:\\msys64\\mingw64\\bin\\g++.exe"
 
 // Make Codebook
-// ./ --author "Salmon" --initials Salmon --columns 3 --output "CodeBook.pdf" --size 8
+// notebook-generator ./ --author "Salmon" --initials Salmon --columns 3 --output "CodeBook.pdf" --size 8
 
 // Init
 #include <bits/stdc++.h>
