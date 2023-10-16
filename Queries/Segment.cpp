@@ -77,6 +77,10 @@ ll query(int l, int r, int L, int R, int now){
         return tree[now].sum;
     }
 	return query(l, r, L, M, lc) + query(l, r, M+1, R, rc);
+    // if(l <= L && R <= r) return tree[now].val;
+    // if(r <= M) return query(l, r, L, M, lc);
+    // else if(l > M) return query(l, r, M+1, R, rc);
+	// return query(l, r, L, M, lc) & query(l, r, M+1, R, rc);
 }
 // pizza_queries
 // Left(s < t): dis_l = (pizza[s] - s) + t;

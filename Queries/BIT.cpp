@@ -10,7 +10,7 @@ void modify(int x, int mod){
         _1D_BIT[x] += mod;
     }
 }
-ll query(int x, int y){
+ll query(int x){
     ll ans = 0;
     for(; x; x -= (x&-x)){
         ans += _1D_BIT[x];

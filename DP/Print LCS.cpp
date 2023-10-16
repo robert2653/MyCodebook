@@ -19,7 +19,7 @@ void solve(){
     int length = dp[m][n];
     cout << length << "\n";
     vector<char> s(length);
-    // 沿著dp回去
+    // along to dp to trace back
     while(m >= 1 && n >= 1){
         if(s1[m] == s2[n]){
             s[length - 1] = s1[m];

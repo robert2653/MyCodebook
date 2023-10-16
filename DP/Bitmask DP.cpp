@@ -31,4 +31,26 @@ void solve(){
 		}
     }
     cout << dp[(1 << n) - 1][n - 1];
+    // elevator rides
+    // for(int i = 1; i < 1 << n; i++){
+    //     used[i] = dp[i] = inf;
+    //     for(int j = 0; j < n; j++){
+    //         if(i & (1 << j)){  // 有j
+    //             int last = i ^ (1 << j);
+    //             if(used[last] + s[j] <= x){
+    //                 if(dp[last] < dp[i] || dp[last] == dp[i] && used[last] + s[j] < used[i]){
+    //                     used[i] = used[last] + s[j];
+    //                     dp[i] = dp[last];
+    //                 }
+    //             }
+    //             else {
+    //                 if(dp[last] + 1 < dp[i] || dp[last] + 1 == dp[i] && s[j] < used[i]){
+    //                     used[i] = s[j];
+    //                     dp[i] = dp[last] + 1;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    // cout << dp[(1 << n) - 1];
 }
