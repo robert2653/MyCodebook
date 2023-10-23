@@ -15,7 +15,7 @@ void dfs(int par, int now, int depth){
     }
 }
 void find_ans(int par, int now){
-// each sub's dis make - 1，non subnode + 1
+// each sub's dis make - 1, non subnode + 1
     for(auto nxt : tree[now]){
         if(par != nxt){
             ans[nxt] = ans[now] + (n - subtree[nxt]) - subtree[nxt];

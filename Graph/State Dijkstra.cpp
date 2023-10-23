@@ -12,7 +12,7 @@ void dijkstra(){
     while(!pq.empty()){
         auto nxt = pq.top(); pq.pop();
         ll dist = nxt[0], u = nxt[1]; bool us = nxt[2];
-        if(dis[u][us] < dist) continue; // 過時了，跳過
+        if(dis[u][us] < dist) continue; // is out of time, pass
         if(us){
             for(auto [v, w] : graph[u]){
                 if(dis[u][1] + w < dis[v][1]){

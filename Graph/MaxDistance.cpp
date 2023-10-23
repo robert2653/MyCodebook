@@ -1,5 +1,5 @@
-// Max_Dis，Use Topo，Use queue
-// If 1 can't reach n，still may be relaxed，Should dis[n] < 0
+// Max_Dis, Use Topo, Use queue
+// If 1 can't reach n, still may be relaxed，Should dis[n] < 0
 // Only Directed Graph
 void print_ans(int n, vector<int> &par){
     deque<int> ans;

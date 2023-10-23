@@ -1,4 +1,4 @@
-// Fing All SCC and Build a DAG，then Topo DP
+// Fing All SCC and Build a DAG, then Topo DP
 const int maxn = 1e5+5;
 vector<int> v, adj[maxn], rev_adj[maxn], DAG[maxn];
 int order[maxn], coin[maxn], in[maxn];

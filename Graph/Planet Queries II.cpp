@@ -2,7 +2,7 @@
 int n, q;
 int dp[30][maxn];
 vector<vector<int>> cycles;
-int no[maxn]; // Order、Can be in cycle，or out
+int no[maxn]; // Order & Can be in cycle, or out
 int cycle_idx[maxn];
 bool vis[maxn];
 void set_out_of_cycle_no(int now, unordered_set<int> &done){
@@ -88,7 +88,7 @@ void solve(){
             }
             else cout << -1 << endl;
         }
-        else if (cycle_idx[u] == -1 && cycle_idx[v] != -1){ // v is in cycle，Smaller Binary Search
+        else if (cycle_idx[u] == -1 && cycle_idx[v] != -1){ // v is in cycle, Smaller Binary Search
             int l = -1, r = n;
             while (l <= r){
                 int m = (l + r) / 2;
@@ -105,7 +105,7 @@ void solve(){
             }
             else cout << -1 << endl;
         }
-        else { // u is death in the cycle，can't reach
+        else { // u is death in the cycle, can't reach
             cout << -1 << endl;
         }
     }

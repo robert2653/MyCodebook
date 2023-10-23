@@ -1,4 +1,4 @@
-#include <bits/stdc++.h> // 權重樹直徑
+#include <bits/stdc++.h> // weighted tree centroid
 using namespace std;
 const int maxn = 1e5+5;
 using ll = long long int;

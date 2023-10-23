@@ -6,7 +6,7 @@ typedef struct {
     int to, w, rev_ind;
 } edge;
 vector<edge> adj[505];
-bool label_level(){ // Tag the depth，if can't reach end => return false
+bool label_level(){ // Tag the depth, if can't reach end => return false
     memset(lev, -1, sizeof(lev));
     lev[1] = 0;
     queue<int> q;   q.push(1);
@@ -50,11 +50,11 @@ void build(){
     rep(i, 1, m){
         int u, v, w; cin >> u >> v >> w;
         adj[u].push_back({v, w, (int)adj[v].sz});   // inverse flow's index
-        adj[v].push_back({u, 0, (int)adj[u].sz-1}); // have pushed one，need to -1
+        adj[v].push_back({u, 0, (int)adj[u].sz-1}); // have pushed one, need to -1
     }
 }
-// Police Chase，need to open adj to Augment && ori to determine what pb give
-// Dinic、dfs2，then use reach as u，if the edge pb has given && w == 0 && v is not in reach，is the ans
+// Police Chase, need to open adj to Augment && ori to determine what pb give
+// Dinic、dfs2, then use reach as u, if the edge pb has given && w == 0 && v is not in reach, is the ans
 void dfs2(int now, unordered_set<int> &reach){
     if(!vis[now]){
         vis[now] = 1;
@@ -67,11 +67,11 @@ void dfs2(int now, unordered_set<int> &reach){
     }
 }
 // two two pair // School Dance
-// Dinic，then w == 0 edge, which pb has given is the ans
+// Dinic, then w == 0's edge, which pb has given is the ans
 
 // Distinct Route
-// edge set valid var，if we need to argument pos road，the reverse edge set true valid；
-// if we need argument the argumented edge，both set false，last, from v dfs ans times
+// edge set valid var, if we need to argument pos road, the reverse edge set true valid；
+// if we need argument the argumented edge，both set false. Last, from v dfs ans times
 bool get_road(int now, vector<int> &ans, vector<bool> &vis){
     if(now == 1) return true;
     for(auto &v : adj[now]){

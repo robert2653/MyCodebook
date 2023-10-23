@@ -1,35 +1,48 @@
-typedef struct {
-    int set_val, add, sum, val;
-} node;
-node tree[100];
-int n, q, nums[100], _1D_BIT[100], _2D_BIT[100][100];
+int n, nums[100], BIT[100], iiBIT[100][100];
 
 // 1D-BIT
 void modify(int x, int mod){
     for(; x <= n; x += (x&-x)){
-        _1D_BIT[x] += mod;
+        BIT[x] += mod;
     }
 }
-ll query(int x){
-    ll ans = 0;
-    for(; x; x -= (x&-x)){
-        ans += _1D_BIT[x];
-    }
-    return ans;
+long long query(int a, int b) {
+	long long ans = 0;
+	for (; b; b -= b&-b) ans += BIT[b];
+	for (a--; a; a -= a&-a) ans -= BIT[a];
+	return ans;
 }
 // 2D-BIT // Forest Queries (Area)
 void modify(int x, int y, int mod){
     for(; x <= n; x += (x&-x)){
         for(int tmp = y; tmp <= n; tmp += (tmp&-tmp)){
-            _2D_BIT[x][tmp] += mod;
+            iiBIT[x][tmp] += mod;
         }
     }
 }
-ll query(int x, int y){
-    ll ans = 0;
-    for(; x; x -= (x&-x)){
-        for(int tmp = y; tmp; tmp -= (tmp&-tmp)){
-            ans += _2D_BIT[x][tmp];
+long long query(int x1, int y1, int x2, int y2){
+    long long ans = 0;
+    x1--, y1--;
+    int tmp1, tmp2;
+    
+    for(tmp1 = x2; tmp1; tmp1 -= (tmp1&-tmp1)){
+        for(tmp2 = y2; tmp2; tmp2 -= tmp2&-tmp2){
+            ans += iiBIT[tmp1][tmp2];
+        }
+    }
+    for(tmp1 = x1; tmp1; tmp1 -= (tmp1&-tmp1)){
+        for(tmp2 = y2; tmp2; tmp2 -= tmp2&-tmp2){
+            ans -= iiBIT[tmp1][tmp2];
+        }
+    }
+    for(tmp1 = x2; tmp1; tmp1 -= (tmp1&-tmp1)){
+        for(tmp2 = y1; tmp2; tmp2 -= tmp2&-tmp2){
+            ans -= iiBIT[tmp1][tmp2];
+        }
+    }
+    for(tmp1 = x1; tmp1; tmp1 -= (tmp1&-tmp1)){
+        for(tmp2 = y1; tmp2; tmp2 -= tmp2&-tmp2){
+            ans += iiBIT[tmp1][tmp2];
         }
     }
     return ans;

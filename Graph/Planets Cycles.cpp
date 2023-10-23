@@ -12,7 +12,7 @@ void dfs(ll x){
     step++;
     dfs(v[x]);
 }
-// count pathdis to rep
+// count path_dis to rep
 int main(){
     v.assign(n + 1, 0);
     dis.assign(n + 1, 0);
