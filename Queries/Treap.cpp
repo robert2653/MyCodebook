@@ -32,12 +32,12 @@ Treap *merge(Treap *a, Treap *b){
     if(!a || !b) return a ? a : b;
     // push(a); push(b);    // lazy
     if(a->pri > b->pri){
-        a->r = merge(a->r, b);
+        a->r = merge(a->r, b);  // a->r = new, inorder, make sense
         a->pull();
         return a;
     }
     else {
-        b->l = merge(a, b->l);
+        b->l = merge(a, b->l);  // new->l = a, inorder, make sense
         b->pull();
         return b;
     }
@@ -74,7 +74,7 @@ void substring_rev(){
     for(auto c : str){
         root = merge(root, new Treap(c));
     }
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int x, y; cin >> x >> y;
         auto [a, b] = split(root, x-1); // a: 1~x-1, b: x~n
         auto [c, d] = split(b, y-x+1);  // Use b to split
