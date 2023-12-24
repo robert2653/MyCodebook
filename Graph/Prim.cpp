@@ -1,6 +1,6 @@
 int n, m;
 ll ans = 0;
-vii adj[maxn];
+vector<pair<int, int>> adj[maxn];
 bool Prim(){
     int node_sz = 0;
     priority_queue<pii, vii, greater<pii>> pq;
@@ -22,7 +22,7 @@ bool Prim(){
 }
 void solve(){
     cin >> n >> m;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v, cost; cin >> u >> v >> cost;
         adj[u].push_back({v, cost});
         adj[v].push_back({u, cost});

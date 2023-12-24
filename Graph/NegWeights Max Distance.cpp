@@ -1,8 +1,8 @@
 const int maxn = 2505;
 int m, n;
 vector<edge> graph;
-vll adj[maxn];
-vl rev_adj[maxn];
+vector<pair<int, int>> adj[maxn];
+vector<ll> rev_adj[maxn];
 ll dis[maxn];
 bool vis[maxn] = {0};
 bool nvis[maxn] = {0};
@@ -26,16 +26,16 @@ void rev_dfs(int par, int now){
 }
 void solve(){
     cin >> n >> m;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v, w;
         cin >> u >> v >> w;
         graph.push_back({u, v, w});
         adj[u].push_back({v, w});
         rev_adj[v].push_back(u);
     }
-    rep(i, 1, n) dis[i] = minf;
+    for(int i = 1; i <= n; i++) dis[i] = -inf;
     dis[1] = 0;
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         for (auto [u, v, w] : graph){
             if (dis[u] + w > dis[v]){
                 dis[v] = dis[u] + w;

@@ -13,7 +13,7 @@ void set_out_of_cycle_no(int now, unordered_set<int> &done){
     no[now] = no[dp[0][now]] - 1;
 }
 int will_go_to(int u, int k){ // return the node when walk k
-    rep(i, 0, 18){
+    for(int i = 0; i <= 18; i++){
         if (k & (1 << i)){
             u = dp[i][u];
         }
@@ -45,15 +45,15 @@ void find_cycle(int now){
 }
 void solve(){
     cin >> n >> q;
-    rep(u, 1, n){
+    for(int u = 1; u <= n; u++){
         cin >> dp[0][u];
     }
-    rep(i, 1, 18){ // Make Chart
-        rep(u, 1, n){
+    for(int i = 1; i <= 18; i++){ // Make Chart
+        for(int u = 1; u <= n; u++){
             dp[i][u] = dp[i - 1][dp[i - 1][u]];
         }
     }
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         if (!vis[i]) find_cycle(i);
     }
     ll idx = 0;
@@ -69,24 +69,24 @@ void solve(){
         }
         idx++;
     }
-    rep(i, 1, n) set_out_of_cycle_no(i, done);
-    rep(i, 1, q){
+    for(int i = 1; i <= n; i++) set_out_of_cycle_no(i, done);
+    for(int i = 1; i <= q; i++){
         int u, v;   cin >> u >> v;
         // Same Cycle
         if (cycle_idx[u] == cycle_idx[v] && cycle_idx[u] != -1 && cycle_idx[v] != -1){
             int cyc_size = cycles[cycle_idx[u]].size();
-            cout << (no[v] - no[u] + cyc_size) % cyc_size << endl;
+            cout << (no[v] - no[u] + cyc_size) % cyc_size << "\n";
         }
         else if (cycle_idx[u] == -1 && cycle_idx[v] == -1){ // Both are not in a Cycle
             if (no[u] > no[v]){
-                cout << -1 << endl;
+                cout << -1 << "\n";
                 continue;
             }
             ll jump = no[v] - no[u];
             if (will_go_to(u, jump) == v){
-                cout << jump << endl;
+                cout << jump << "\n";
             }
-            else cout << -1 << endl;
+            else cout << -1 << "\n";
         }
         else if (cycle_idx[u] == -1 && cycle_idx[v] != -1){ // v is in cycle, Smaller Binary Search
             int l = -1, r = n;
@@ -101,12 +101,12 @@ void solve(){
             if (l != -1 && l <= n){
                 int in_cycle_of_u = will_go_to(u, l);
                 int cycle_size = cycles[cycle_idx[v]].size();
-                cout << l + (no[v] - no[in_cycle_of_u] + cycle_size) % cycle_size << endl;
+                cout << l + (no[v] - no[in_cycle_of_u] + cycle_size) % cycle_size << "\n";
             }
-            else cout << -1 << endl;
+            else cout << -1 << "\n";
         }
         else { // u is death in the cycle, can't reach
-            cout << -1 << endl;
+            cout << -1 << "\n";
         }
     }
 }

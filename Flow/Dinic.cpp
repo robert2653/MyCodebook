@@ -47,7 +47,7 @@ void dinic(){
     }
 }
 void build(){
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++) {
         int u, v, w; cin >> u >> v >> w;
         adj[u].push_back({v, w, (int)adj[v].sz});   // inverse flow's index
         adj[v].push_back({u, 0, (int)adj[u].sz-1}); // have pushed one, need to -1

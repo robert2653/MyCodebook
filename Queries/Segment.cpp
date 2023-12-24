@@ -1,7 +1,8 @@
+const int maxn = 2e5 + 5;
 typedef struct {
     int set_val, add, sum, val;
 } node;
-int n, q; node tree[4*maxn]; int nums[maxn];
+int n, q; node tree[4 * maxn]; int nums[maxn];
 #define lc 2*now
 #define rc 2*now+1
 #define mid (L+R)/2 // LR is now range, lr is target range

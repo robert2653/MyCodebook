@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
 // Ceiled MinCostMaxFlow，if not, use dinic
 typedef struct {
     int from, to, w, cost;
@@ -19,11 +17,11 @@ void add_edge(int u, int v, int w, int cost){
 ll Bellman_Ford(){
     vector<ll> dis(n+1, inf); dis[1] = 0;
     vector<int> par(m);
-    vector<int> flow_rec(n+1, 0); flow_rec[1] = 1e9;
-    lrep(i, 1, n){
+    vector<int> flow_rec(n + 1, 0); flow_rec[1] = 1e9;
+    for(int i = 1; i < n; i++){
         bool flag = 1;
         int size = adj.sz;
-        lrep(i, 0, size){
+        for(int i = 0; i < size; i++){
             auto &[from, to, w, cost] = adj[i];
             if(w > 0 && dis[to] > dis[from] + cost){
                 flag = 0;
@@ -50,7 +48,7 @@ ll Bellman_Ford(){
 void solve(){
     cin >> n >> m >> parcel;
     ll ans = 0;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v, w, cost; cin >> u >> v >> w >> cost;
         add_edge(u, v, w, cost);
     }

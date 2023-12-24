@@ -1,8 +1,8 @@
 struct Treap {
     Treap *l, *r;
     int pri, subsize; char val; bool rev_valid;
-    Treap(int _val){
-        val = _val;
+    Treap(int val){
+        this->val = val;
         pri = rand();
         l = r = nullptr;
         subsize = 1; rev_valid = 0;

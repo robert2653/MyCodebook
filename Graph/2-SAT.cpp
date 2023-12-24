@@ -26,7 +26,7 @@ void rev_dfs(int now){
 void solve(){
     int n, m;
     cin >> m >> n;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v;
         char a, b;
         cin >> a >> u >> b >> v;
@@ -41,7 +41,7 @@ void solve(){
         rev_adj[v].push_back(2 * n - u + 1);
         rev_adj[u].push_back(2 * n - v + 1);
     }
-    rep(i, 1, 2 * n){
+    for(int i = 1; i <= 2 * n; i++){
         if (!vis[i]){
             dfs(i);
         }
@@ -55,7 +55,7 @@ void solve(){
         }
     }
     char ans[2 * n + 1];
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         if (cat[i] == cat[2 * n - i + 1]){
             cout << "IMPOSSIBLE";
             return;
@@ -65,7 +65,7 @@ void solve(){
         }
         else ans[i] = '-';
     }
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         cout << ans[i] << " ";
     }
 }

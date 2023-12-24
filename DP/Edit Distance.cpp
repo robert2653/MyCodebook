@@ -4,10 +4,10 @@ void solve(){
     string s1, s2; cin >> s1 >> s2;
     int size1 = s1.sz, size2 = s2.sz;
     s1 = "0" + s1, s2 = "0" + s2;
-    rep(i, 1, size2) dp[0][i] = i;  // s2 = {}, s1 = ...;
-    rep(i, 1, size1) dp[i][0] = i;  // s1 = {}, s2 = ...;
-    rep(i, 1, size1){
-        rep(j, 1, size2){
+    for(int i = 1; i <= size2; i++) dp[0][i] = i;  // s2 = {}, s1 = ...;
+    for(int i = 1; i <= size1; i++) dp[i][0] = i;  // s1 = {}, s2 = ...;
+    for(int i = 1; i <= size1; i++){
+        for(int j = 1; j <= size2; j++){
             if(s1[i] == s2[j]){
                 dp[i][j] = dp[i-1][j-1];
             }

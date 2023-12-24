@@ -2,13 +2,13 @@
 void solve(){
     int n; cin >> n;
     vector<int> v(n);
-    lrep(i, 0, n){
+    for(int i = 0; i < n; i++){
         cin >> v[i];
     }
     int dp[n]; vector<int> mono;
     mono.push_back(v[0]);
     dp[0] = 1;  int L = 1;
-    lrep(i, 1, n){
+    for(int i = 1; i < n; i++){
         if(v[i] > mono.back()){
             mono.push_back(v[i]);
             dp[i] = ++L;

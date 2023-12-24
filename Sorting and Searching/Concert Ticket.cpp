@@ -1,9 +1,5 @@
 // Better than Binary Search
-#include <bits/stdc++.h>
-using namespace std;
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(nullptr);
     int n, m; cin >> n >> m;
     multiset<int> tik;
     for(int i = 0; i < n; i++){

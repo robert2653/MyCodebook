@@ -4,7 +4,7 @@ vll graph[maxn];
 ll dis[maxn][2];    // 0 for not used
 void dijkstra(){
     priority_queue<vector<ll>, vector<vector<ll>>, greater<vector<ll>>> pq;  // 0 for w, 1 for u, 2 for discount
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         dis[i][0] = dis[i][1] = inf;
     }
     dis[1][0] = dis[1][1] = 0;
@@ -38,7 +38,7 @@ void dijkstra(){
 }
 void solve(){
     cin >> n >> m;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v, w;
         cin >> u >> v >> w;
         graph[u].push_back({v, w});

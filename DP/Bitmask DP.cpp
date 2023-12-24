@@ -5,12 +5,12 @@ int n, m;
 const int mod = 1e9 + 7;
 void solve(){
     cin >> n >> m;
-    rep(i, 1, m){
+    for(int i = 0; i < m; i++){
         int u, v; cin >> u >> v;
         rev_adj[--v].push_back(--u);
     }
     dp[1][0] = 1;
-    lrep(road, 1 << 1, 1 << n){
+    for(int road = 0; road < (1 << n); road++){
         // Not include 1
         if(road & 1 == 0) continue;
         // include n but not all walked

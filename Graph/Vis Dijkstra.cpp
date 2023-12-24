@@ -2,22 +2,22 @@ void solve(){
     int n, m, noon, night;
     cin >> n >> m >> noon >> night;
     ll dis[n + 1];
-    vll graph[n + 1];
+    vector<ll> graph[n + 1];
     bool vis[n + 1];
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v, w; cin >> u >> v >> w;
         graph[u].push_back({v, w});
         graph[v].push_back({u, w});
     }
     priority_queue<vector<ll>, vector<vector<ll>>, greater<vector<ll>>> pq;
     // noon is -
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         dis[i] = inf;   vis[i] = 0;
     }
     pq.push({0, -noon, 1});
     dis[1] = 0;
     while(!pq.empty()){
-        vl now = pq.top(); pq.pop();
+        vector<ll> now = pq.top(); pq.pop();
         ll now_noon = -now[1], u = now[2];
         if(vis[u]) continue;
         for(auto [nxt, w] : graph[u]){

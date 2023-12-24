@@ -16,9 +16,9 @@ struct KMP {
     }
     void KMPmatching(string &sub) {
         for(int i = 0, now = -1; i < s.size(); i++) {
-            // now 是 b 現在匹配成功的長度 -1
+            // now is the compare sucessed length -1
             while (s[i] != sub[now + 1] && now != -1) now = failure[now];
-            // f 儲存了如果匹對失敗，要移去哪裡
+            // f stores if comparison fail, move to where
             if (s[i] == sub[now + 1]) now++;
             if (now + 1 == sub.size()) {
                 cout << "found a match start at position " << i - now << "\n";

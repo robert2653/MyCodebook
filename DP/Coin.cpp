@@ -4,16 +4,15 @@ ll dp[2][1000001];
 void solve(){
     int n, x; cin >> n >> x;
     vector<int> coin(n + 1);
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         cin >> coin[i];
     }
-    init(dp[0], 0);
     dp[0][0] = 1;
-    rep(i, 1, n){
-        rep(j, 0, x){
+    for(int i = 1; i <= n; i++){
+        for(int j = 0; j <= x; j++){
             dp[i & 1][j] = dp[!(i & 1)][j];
             if(j >= coin[i]){
-                (dp[i & 1][j] += dp[i & 1][j - coin[i]]) %= MOD;
+                (dp[i & 1][j] += dp[i & 1][j - coin[i]]) %= mod;
             }
         }
     }
@@ -23,12 +22,12 @@ void solve(){
 void solve(){
     int n, x; cin >> n >> x;
     vector<int> coin(n);
-    lrep(i, 0, n){
+    for(int i = 0; i < n; i++){
         cin >> coin[i];
     }
     ll dp[x+1]; // init(dp, 0);
     dp[0] = 0;
-    rep(i, 1, x){
+    for(int i = 1; i <= x; i++){
         dp[i] = llinf;
         for(auto &j : coin){
             if(j <= i){

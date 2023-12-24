@@ -14,14 +14,14 @@ void dfs(int now, vector<int> &road){
 void solve(){
     cin >> n >> m;
     init(in,  0);
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v; cin >> u >> v;
         adj[u].insert(v);
         in[v]++;
     }
     in[1]++;
     in[n]--;
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         if(adj[i].size() != in[i]){
             cout << "IMPOSSIBLE";
             return;

@@ -1,7 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
 const int maxn = 2e5+5;
-int n, q; using ll = long long;
+int n, q;
 ll nums[maxn], prefix[maxn], ans[maxn], BIT[maxn], contrib[maxn];
 vector<pair<int, int>> queries[maxn];
 void update(int pos, ll val) {

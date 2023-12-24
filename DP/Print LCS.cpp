@@ -6,8 +6,8 @@ void solve(){
     s2.insert(s2.begin(), '1');
     int L = 0;
     int dp[m+1][n+1];   init(dp, 0);
-    rep(i, 1, m){
-        rep(j, 1, n){
+    for(int i = 1; i <= m; i++){
+        for(int j = 1; j <= n; j++){
             if(s1[i] == s2[j]){
                 dp[i][j] = dp[i-1][j-1] + 1;
             }

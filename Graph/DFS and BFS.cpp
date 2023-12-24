@@ -1,5 +1,5 @@
 ll N = 1e6;
-vi adj[N];
+vector<int> adj[N];
 bool vis[N];
 void DFS(ll s){
     if(vis[s]) return;

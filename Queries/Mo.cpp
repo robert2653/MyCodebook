@@ -22,11 +22,11 @@ void Mo(){
 // Compress too big nums, gives new nums to them
 void compress(){
     vector<pair<int, int>> compress(n);
-    rep(i, 1, n){
+    for(int i = 0; i < n; i++){
         cin >> nums[i];
         compress[i-1] = {nums[i], i};
     }
-    sort(all(compress));
+    sort(compress.begin(), compress.end(), cmp);
     int pre = compress[0].first, new_num = 0;
     nums[compress[0].second] = 0;
     for(auto it = compress.begin() + 1, end = compress.end(); it != end; it++){

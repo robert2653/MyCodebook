@@ -3,7 +3,7 @@ void solve(){
     int n; cin >> n;
     ll pref = 0;
     vector<ll> v(n+1);
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         cin >> v[i];
         pref += v[i];
     }

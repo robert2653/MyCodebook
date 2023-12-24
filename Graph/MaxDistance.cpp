@@ -17,18 +17,18 @@ void print_ans(int n, vector<int> &par){
 void solve(){
     int n, m;
     cin >> n >> m;
-    vector<int> dis(n+1, -inf); dis[1] = 0;
-    vi graph[n+1];
+    vector<int> dis(n + 1, -inf); dis[1] = 0;
+    vector<int> graph[n+1];
     vector<bool> vis(n+1, 0);
     vector<int> par(n+1);
     vector<int> in(n+1, 0);
     queue<int> q;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v; cin >> u >> v;
         graph[u].push_back(v);
         in[v]++;
     }
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         if(in[i] == 0) q.push(i);
     }
     while(!q.empty()){

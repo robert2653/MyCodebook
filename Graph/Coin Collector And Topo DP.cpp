@@ -24,7 +24,7 @@ void rev_dfs(int now){
 }
 void solve(){
     cin >> n >> m;
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         cin >> coin[i];
     }
     rep(i, 1, m){
@@ -32,7 +32,7 @@ void solve(){
         adj[u].push_back(v);
         rev_adj[v].push_back(u);
     }
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         if(!vis[i]){
             dfs(i);
         }
@@ -49,7 +49,7 @@ void solve(){
     ll sum_coin[k + 1], dp_coin[k + 1];
     init(sum_coin, 0); init(dp_coin, 0);
     ll ans = -inf;
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         sum_coin[order[i]] += coin[i];   // Now team(k) += coin;
         for(auto j : adj[i]){
             if(order[i] != order[j]){
@@ -60,7 +60,7 @@ void solve(){
     }
     // Topo DP
     queue<int> q;
-    rep(i, 1, k){
+    for(int i = 1; i <= k; i++){
         if(in[i] == 0){
             q.push(i);
         }

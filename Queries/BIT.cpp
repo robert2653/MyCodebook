@@ -1,13 +1,12 @@
 int n, nums[100], BIT[100], iiBIT[100][100];
-
 // 1D-BIT
 void modify(int x, int mod){
     for(; x <= n; x += (x&-x)){
         BIT[x] += mod;
     }
 }
-long long query(int a, int b) {
-	long long ans = 0;
+ll query(int a, int b) {
+	ll ans = 0;
 	for (; b; b -= b&-b) ans += BIT[b];
 	for (a--; a; a -= a&-a) ans -= BIT[a];
 	return ans;
@@ -20,8 +19,8 @@ void modify(int x, int y, int mod){
         }
     }
 }
-long long query(int x1, int y1, int x2, int y2){
-    long long ans = 0;
+ll query(int x1, int y1, int x2, int y2){
+    ll ans = 0;
     x1--, y1--;
     int tmp1, tmp2;
     

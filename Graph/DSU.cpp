@@ -25,11 +25,11 @@ void dsu(int x, int y){
 void solve(){
     int n, q; cin >> n >> q;
     ans = n;
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         boss[i] = i;
         set_sz[i] = 1;
     }
-    rep(i, 1, q){
+    for(int i = 1; i <= q; i++){
         int x, y;
         cin >> x >> y;
         dsu(x, y);

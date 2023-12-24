@@ -34,11 +34,11 @@ void dfs(int now){
 }
 void solve(){
     cin >> n >> m;
-    rep(i, 1, m){
+    for(int i = 1; i <= m; i++){
         int u, v; cin >> u >> v;
         graph[u].push_back(v);
     }
-    rep(i, 1, n){
+    for(int i = 1; i <= n; i++){
         if(!vis[i])
             dfs(i);
     }
