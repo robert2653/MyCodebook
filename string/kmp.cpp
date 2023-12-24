@@ -21,7 +21,7 @@ struct KMP {
             // f 儲存了如果匹對失敗，要移去哪裡
             if (s[i] == sub[now + 1]) now++;
             if (now + 1 == sub.size()) {
-                cout << "found a match start at position " << i - now << endl;
+                cout << "found a match start at position " << i - now << "\n";
                 now = failure[now];
             }
         }
