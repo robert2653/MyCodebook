@@ -5,24 +5,33 @@
 // FacNums = (x+1)(y+1)(z+1)...
 // FacSum = (a^0+a^1...+a^x)(b^0+...+b^y)
 // FacMul = N(x+1)(y+1)(z+1)/2
-ll fast_exp(ll x, ll p, ll mod){
-    ll ans = 1;
-    while(p > 0){
-        if(p & 1) ans = (ans * x) % mod;
-        x = x * x % mod;
-        p >>= 1;
-    }
-    return ans;
-}
-ll quick_mul(ll a, ll b){
-    ll ans = 0;
-    a %= MOD;
-    while(b > 0){
-        if(b & 1){
-            ans = (ans + a) % MOD;
+int Is_Prime[1000005][2];
+int main(){
+    for(int i = 1; i <= 1000000; i++) Is_Prime[i][0] = 1;
+    Is_Prime[1][0] = 0;
+    for(int i = 2; i <= 1000; i++){
+        if(Is_Prime[i][0]){
+            for(int j = i + i; j <= 1000000; j += i){
+                Is_Prime[j][0] = 0;
+                Is_Prime[j][1] = i;
+            }
         }
-        a = (a << 1) % MOD;
-        b >>= 1;
     }
-    return ans;
+    ll ans = 1;
+    int q; cin >> q;
+    if(q == 1) {
+        cout << 1 << endl;
+        return;
+    }
+    map<int, int> mp;
+    while(!Is_Prime[q][0]){
+        mp[Is_Prime[q][1]]++;
+        q /= Is_Prime[q][1];
+    }
+    mp[q]++;
+
+    for(auto [a, b] : mp){
+        ans *= b + 1;
+    }
+    cout << ans << endl;
 }
