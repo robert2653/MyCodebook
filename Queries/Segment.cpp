@@ -24,7 +24,9 @@ struct Seg {
     Node query(int l, int r, int ql, int qr, int now){
         int m = (l + r) >> 1;
         if(qr < l || ql > r){
-            return {100000000000};
+// ------------------------out of range, return what-------------------------------
+            return {0};
+// --------------------------------------------------------------------------------
         }
         if(ql <= l && r <= qr){
             return tree[now];
