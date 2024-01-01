@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 struct Treap {
     Treap *l, *r;
     int pri, subsize; char val; bool rev_valid;
@@ -9,7 +11,7 @@ struct Treap {
     }
     void pull(){    // update subsize or other information
         subsize = 1;
-        for(auto i: {l,r}){
+        for(auto i : {l, r}){
             if(i) subsize += i->subsize;
         }
     }

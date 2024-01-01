@@ -1,48 +1,44 @@
-int n, nums[100], BIT[100], iiBIT[100][100];
-// 1D-BIT
-void modify(int x, int mod){
-    for(; x <= n; x += (x&-x)){
-        BIT[x] += mod;
+#include <bits/stdc++.h>
+using namespace std;
+struct BIT {
+    int n;
+    vector<int> bit;
+    BIT(int n) {
+        this->n = n;
+        bit.resize(n + 1, 0);
     }
-}
-ll query(int a, int b) {
-	ll ans = 0;
-	for (; b; b -= b&-b) ans += BIT[b];
-	for (a--; a; a -= a&-a) ans -= BIT[a];
-	return ans;
-}
-// 2D-BIT // Forest Queries (Area)
-void modify(int x, int y, int mod){
-    for(; x <= n; x += (x&-x)){
-        for(int tmp = y; tmp <= n; tmp += (tmp&-tmp)){
-            iiBIT[x][tmp] += mod;
+    void modify(int i, int val) {
+        for (; i <= n; i += i & -i) {
+            bit[i] += val;
         }
     }
-}
-ll query(int x1, int y1, int x2, int y2){
-    ll ans = 0;
-    x1--, y1--;
-    int tmp1, tmp2;
-    
-    for(tmp1 = x2; tmp1; tmp1 -= (tmp1&-tmp1)){
-        for(tmp2 = y2; tmp2; tmp2 -= tmp2&-tmp2){
-            ans += iiBIT[tmp1][tmp2];
+    int query(int r) {
+	    int ans = 0;
+	    for (; r; r -= r & -r) ans += bit[r];
+	    return ans;
+    }
+};
+struct TwoDimensionBIT {
+    int nx, ny;
+    vector<vector<int>> bit;
+    TwoDimensionBIT(int x, int y) {
+        nx = x; ny = y;
+        bit.resize(x + 1, vector<int>(y + 1, 0));
+    }
+    void modify(int x, int y, int mod){
+        for(; x <= nx; x += x & -x){
+            for(int tmp = y; tmp <= ny; tmp += tmp & -tmp){
+                bit[x][tmp] += mod;
+            }
         }
     }
-    for(tmp1 = x1; tmp1; tmp1 -= (tmp1&-tmp1)){
-        for(tmp2 = y2; tmp2; tmp2 -= tmp2&-tmp2){
-            ans -= iiBIT[tmp1][tmp2];
+    int query(int r1, int r2){
+        int ans = 0;
+        for(; r1; r1 -= r1 & -r1){
+            for(int tmp = r2; tmp; tmp -= tmp & -tmp){
+                ans += bit[r1][tmp];
+            }
         }
+        return ans;
     }
-    for(tmp1 = x2; tmp1; tmp1 -= (tmp1&-tmp1)){
-        for(tmp2 = y1; tmp2; tmp2 -= tmp2&-tmp2){
-            ans -= iiBIT[tmp1][tmp2];
-        }
-    }
-    for(tmp1 = x1; tmp1; tmp1 -= (tmp1&-tmp1)){
-        for(tmp2 = y1; tmp2; tmp2 -= tmp2&-tmp2){
-            ans += iiBIT[tmp1][tmp2];
-        }
-    }
-    return ans;
-}
+};
