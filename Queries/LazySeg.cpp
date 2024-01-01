@@ -26,7 +26,9 @@ struct LazySeg {
     Node query(int l, int r, int ql, int qr, int now){
         int m = (l + r) >> 1;
         if(qr < l || ql > r){
+// -----------------------out of range, return what--------------------------------
             return Node();
+// --------------------------------------------------------------------------------
         }
         push(now, l, r);
         if(ql <= l && r <= qr){
