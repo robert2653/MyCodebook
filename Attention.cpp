@@ -11,7 +11,7 @@
 // Init
 #include <bits/stdc++.h>
 using namespace std;
-#define aint(x) (x).begin(), (x).end()
+#define all(x) (x).begin(), (x).end()
 #define endl "\n"
 #define int long long
 typedef pair<int, int> pii;
