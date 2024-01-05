@@ -16,7 +16,7 @@ void MO(int n, vector<query> &queries){
 void compress(vector<int> &nums){
     vector<int> sorted = nums;
     sort(sorted.begin(), sorted.end());
-    unique(sorted.begin(), sorted.end());
+    nums.erase(unique(sorted.begin(), sorted.end()), nums.end());
     for(int i = 0; i < nums.size(); i++){
         nums[i] = lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1;
     }
